@@ -1,0 +1,73 @@
+@page {
+    size: A4;
+    margin: 10mm;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background: white;
+}
+
+/* Header */
+.header {
+    background-color: #155d7a;
+    color: white;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px;
+    width: 60%;
+    margin: 0 auto 20px auto;
+    border: 2px solid #003b52;
+}
+
+/* Main container */
+.container {
+    border: 2px solid #155d7a;
+    padding: 20px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+/* Borang image */
+.print-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    background-color: #155d7a;
+    color: white;
+    border: 2px solid #003b52;
+    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0f4a62;
+}
+
+/* Hide buttons when printing */
+@media print {
+    .header,
+    .button-group {
+        display: none;
+    }
+
+    .container {
+        border: none;
+        padding: 0;
+    }
+}

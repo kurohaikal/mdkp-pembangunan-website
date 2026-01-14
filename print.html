@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print Borang F</title>
+    <link rel="stylesheet" href="print.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">Borang F</div>
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Borang Image -->
+        <img src="Sijil.jpeg" alt="Borang F" class="print-image">
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <button class="btn" onclick="window.print()">Print</button>
+            <button class="btn" onclick="goHome()">Home</button>
+        </div>
+
+    </div>
+
+    <script>
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

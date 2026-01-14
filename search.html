@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search History - Borang F</title>
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+
+    <div class="header">Borang F</div>
+
+    <div class="container">
+
+        <button class="search-btn" onclick="loadHistory()">Search for data</button>
+
+        <!-- History List -->
+        <div id="historyList"></div>
+
+        <button class="home-btn" onclick="goHome()">home</button>
+
+    </div>
+
+    <script>
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem("borangFHistory"));
+
+            const list = document.getElementById("historyList");
+            list.innerHTML = "";
+
+            if (!history || history.length === 0) {
+                alert("No saved history found.");
+                return;
+            }
+
+            history.forEach((item, index) => {
+                const bar = document.createElement("div");
+                bar.className = "result-bar";
+                bar.innerHTML = "Record " + (index + 1) + " - " + item.tajuk;
+
+                bar.onclick = function () {
+                    alert(
+                        "Tajuk: " + item.tajuk + "\n" +
+                        "Pemaju: " + item.pemaju + "\n" +
+                        "No. Fail: " + item.nofail + "\n" +
+                        "Nama Taman: " + item.taman
+                    );
+                };
+
+                list.appendChild(bar);
+            });
+        }
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

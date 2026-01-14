@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Borang F</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        Borang F
+    </div>
+
+    <!-- Main Form Container -->
+    <div class="form-container">
+
+        <div class="form-group">
+            <label>Tajuk permohon</label>
+            <input type="text" id="tajuk">
+        </div>
+
+        <div class="form-group">
+            <label>Pemaju</label>
+            <input type="text" id="pemaju">
+        </div>
+
+        <div class="form-group">
+            <label>No. Fail</label>
+            <input type="text" id="nofail">
+        </div>
+
+        <div class="form-group">
+            <label>Nama Taman</label>
+            <input type="text" id="taman">
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <button class="btn left" onclick="goSearch()">Search data</button>
+            <button class="btn right" onclick="saveAndPrint()">Print and save</button>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function goSearch() {
+            window.location.href = "search.html";
+        }
+
+        function saveAndPrint() {
+            const record = {
+                tajuk: document.getElementById("tajuk").value,
+                pemaju: document.getElementById("pemaju").value,
+                nofail: document.getElementById("nofail").value,
+                taman: document.getElementById("taman").value
+            };
+
+            // Get existing history or create new
+            let history = JSON.parse(localStorage.getItem("borangFHistory")) || [];
+            history.push(record);
+
+            // Save back to localStorage
+            localStorage.setItem("borangFHistory", JSON.stringify(history));
+
+            // Go to print page
+            window.location.href = "print.html";
+        }
+    </script>
+
+</body>
+</html>
