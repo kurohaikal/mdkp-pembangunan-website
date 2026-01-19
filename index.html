@@ -7,67 +7,45 @@
 </head>
 <body>
 
-    <!-- Header -->
     <div class="header">
-        Borang F
+        <img src="kedah.png" class="logo left">
+        <h1>BORANG F</h1>
+        <img src="MPKP-4-Photoroom.png" class="logo right">
     </div>
 
-    <!-- Main Form Container -->
-    <div class="form-container">
-
-        <div class="form-group">
-            <label>Tajuk permohon</label>
-            <input type="text" id="tajuk">
-        </div>
-
-        <div class="form-group">
-            <label>Pemaju</label>
-            <input type="text" id="pemaju">
-        </div>
-
-        <div class="form-group">
-            <label>No. Fail</label>
-            <input type="text" id="nofail">
-        </div>
-
-        <div class="form-group">
-            <label>Nama Taman</label>
-            <input type="text" id="taman">
-        </div>
-
-        <!-- Buttons -->
-        <div class="button-group">
-            <button class="btn left" onclick="goSearch()">Search data</button>
-            <button class="btn right" onclick="saveAndPrint()">Print and save</button>
-        </div>
-
+    <div class="container">
+        <input id="tajuk" placeholder="TAJUK PERMOHON">
+        <input id="pemaju" placeholder="PEMAJU">
+        <input id="nofail" placeholder="NO.FAIL">
+        <input id="taman" placeholder="NAMA TAMAN">
     </div>
 
-    <!-- JavaScript -->
-    <script>
-        function goSearch() {
-            window.location.href = "search.html";
-        }
+    <div class="button-group">
+        <button onclick="saveData()">Save</button>
+        <button onclick="window.location.href='search.html'">Search</button>
+        <button onclick="window.location.href='print.html'">Print</button>
+    </div>
 
-        function saveAndPrint() {
-            const record = {
-                tajuk: document.getElementById("tajuk").value,
-                pemaju: document.getElementById("pemaju").value,
-                nofail: document.getElementById("nofail").value,
-                taman: document.getElementById("taman").value
-            };
+<script>
+function saveData() {
+    const record = {
+        tajuk: document.getElementById("tajuk").value,
+        pemaju: document.getElementById("pemaju").value,
+        nofail: document.getElementById("nofail").value,
+        taman: document.getElementById("taman").value,
+        time: new Date().toLocaleString()
+    };
 
-            // Get existing history or create new
-            let history = JSON.parse(localStorage.getItem("borangFHistory")) || [];
-            history.push(record);
+    let records = JSON.parse(localStorage.getItem("records")) || [];
+    records.push(record);
+    localStorage.setItem("records", JSON.stringify(records));
 
-            // Save back to localStorage
-            localStorage.setItem("borangFHistory", JSON.stringify(history));
+    alert("Data saved successfully");
 
-            // Go to print page
-            window.location.href = "print.html";
-        }
-    </script>
+    // optional: clear form
+    document.querySelectorAll("input").forEach(i => i.value = "");
+}
+</script>
 
 </body>
 </html>

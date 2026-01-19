@@ -1,66 +1,77 @@
-body {
+* {
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: white;
+}
+
+body {
     margin: 0;
-    padding: 30px;
+    min-height: 100vh;
+
+    /* BACKGROUND */
+    background-image: url("g e o r g i a n a.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/* Header */
-.header {
-    background-color: #155d7a;
-    color: white;
-    text-align: center;
+/* ===== SEARCH BAR ===== */
+.search-bar {
+    width: 80%;
+    margin: 40px auto;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 22px;
+    border-radius: 40px;
+    border: none;
+    background: rgba(180, 180, 180, 0.9);
     font-size: 22px;
-    font-weight: bold;
-    padding: 12px;
-    width: 60%;
-    margin: 0 auto 20px auto;
-    border: 2px solid #003b52;
+    text-align: center;
+    outline: none;
 }
 
-/* Main container */
-.container {
-    border: 2px solid #155d7a;
+/* ===== RECORDS ===== */
+.records {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+    padding: 0 40px;
+}
+
+.record {
+    width: 25%;
+    background: rgba(180, 180, 180, 0.9);
+    border-radius: 50px;
     padding: 30px;
-    width: 85%;
-    margin: auto;
+    text-align: center;
 }
 
-/* Search button */
-.search-btn {
-    background-color: #155d7a;
-    color: white;
-    border: 2px solid #003b52;
-    padding: 10px 25px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-bottom: 40px;
+.record h2 {
+    margin-bottom: 20px;
 }
 
-.search-btn:hover {
-    background-color: #0f4a62;
+.record p {
+    font-size: 18px;
+    margin: 12px 0;
 }
 
-/* Result bars */
-.result-bar {
-    background-color: #155d7a;
-    border: 2px solid #003b52;
-    height: 40px;
-    width: 95%;
-    margin: 35px auto;
-}
-
-/* Home button */
+/* ===== HOME BUTTON ===== */
 .home-btn {
-    background-color: #155d7a;
-    color: white;
-    border: 2px solid #003b52;
-    padding: 10px 30px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 30px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 }
 
-.home-btn:hover {
-    background-color: #0f4a62;
+.home-btn a {
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    background: rgba(180, 180, 180, 0.9);
+    color: black;
+    font-size: 16px;
+}
+
+.home-btn a:hover {
+    background: rgba(150, 150, 150, 0.9);
 }

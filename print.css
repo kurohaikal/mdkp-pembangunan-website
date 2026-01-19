@@ -1,73 +1,64 @@
-@page {
-    size: A4;
-    margin: 10mm;
+* {
+    box-sizing: border-box;
 }
 
+/* ===== SCREEN VIEW ===== */
 body {
     margin: 0;
-    padding: 30px;
-    font-family: Arial, sans-serif;
+    background-image: url("g e o r g i a n a.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Certificate on screen */
+.print-certificate {
+    display: block;
+    margin: 40px auto;
+    width: 60%;
     background: white;
 }
 
-/* Header */
-.header {
-    background-color: #155d7a;
-    color: white;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 12px;
-    width: 60%;
-    margin: 0 auto 20px auto;
-    border: 2px solid #003b52;
-}
-
-/* Main container */
-.container {
-    border: 2px solid #155d7a;
-    padding: 20px;
-    width: 90%;
-    margin: auto;
-    text-align: center;
-}
-
-/* Borang image */
-.print-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-/* Buttons */
-.button-group {
+/* Buttons on screen only */
+.screen-controls {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    gap: 15px;
 }
 
-.btn {
-    background-color: #155d7a;
-    color: white;
-    border: 2px solid #003b52;
-    padding: 10px 30px;
-    font-size: 16px;
+.screen-controls button,
+.screen-controls a {
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: none;
+    background: rgba(180,180,180,0.9);
+    text-decoration: none;
+    color: black;
     cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #0f4a62;
-}
-
-/* Hide buttons when printing */
+/* ===== PRINT MODE (CRITICAL PART) ===== */
 @media print {
-    .header,
-    .button-group {
-        display: none;
+
+    /* Hide EVERYTHING */
+    body * {
+        visibility: hidden;
     }
 
-    .container {
-        border: none;
-        padding: 0;
+    /* Show ONLY the image */
+    .print-certificate {
+        visibility: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: auto;
+    }
+
+    body {
+        background: white;
     }
 }

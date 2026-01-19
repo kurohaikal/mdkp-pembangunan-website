@@ -1,68 +1,79 @@
-body {
+* {
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: rgb(255, 234, 182);
+}
+
+body {
     margin: 0;
-    padding: 30px;
+    min-height: 100vh;
+    background: url("g e o r g i a n a.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
 /* Header */
 .header {
-    background-color: #155d7a;
-    color: white;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 12px;
-    width: 60%;
-    margin: 0 auto 20px auto;
-    border: 2px solid #003b52;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
 }
 
-/* Form container */
-.form-container {
-    border: 2px solid #155d7a;
-    padding: 40px;
-    width: 80%;
-    margin: auto;
+.header h1 {
+    font-size: 40px;
+    letter-spacing: 3px;
 }
 
-/* Form groups */
-.form-group {
-    margin-bottom: 30px;
+.logo {
+    width: 80px;
+    position: absolute;
+    top: 20px;
 }
 
-.form-group label {
-    display: block;
+.logo.left {
+    left: 30px;
+}
+
+.logo.right {
+    right: 30px;
+}
+
+/* Form Container */
+.container {
+    width: 70%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Input Bars */
+.container input {
+    padding: 20px;
+    border-radius: 40px;
+    border: none;
+    background: rgba(180, 180, 180, 0.9);
     font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.form-group input {
-    width: 80%;
-    height: 40px;
-    background-color: #155d7a;
-    border: 2px solid #003b52;
-    color: white;
-    font-size: 16px;
-    padding: 5px 10px;
+    text-align: center;
+    outline: none;
 }
 
 /* Buttons */
 .button-group {
     display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
-.btn {
-    background-color: #155d7a;
-    color: rgb(228, 228, 228);
-    border: 2px solid #003b52;
-    padding: 10px 25px;
+button {
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: none;
+    background: #9fa4aa;
     font-size: 16px;
     cursor: pointer;
 }
 
-.btn:hover {
-    background-color: #0f4a62;
+button:hover {
+    background: #7d8288;
 }

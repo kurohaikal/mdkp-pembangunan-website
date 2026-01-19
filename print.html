@@ -2,33 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Print Borang F</title>
+    <title>Print Certificate</title>
     <link rel="stylesheet" href="print.css">
 </head>
 <body>
 
-    <!-- Header -->
-    <div class="header">Borang F</div>
+    <!-- ONLY THIS WILL PRINT -->
+    <img 
+        src="Sijil.jpeg" 
+        alt="Sijil Borang F"
+        class="print-certificate"
+    >
 
-    <!-- Container -->
-    <div class="container">
-
-        <!-- Borang Image -->
-        <img src="Sijil.jpeg" alt="Borang F" class="print-image">
-
-        <!-- Buttons -->
-        <div class="button-group">
-            <button class="btn" onclick="window.print()">Print</button>
-            <button class="btn" onclick="goHome()">Home</button>
-        </div>
-
+    <!-- SCREEN ONLY -->
+    <div class="screen-controls">
+        <button onclick="window.print()">Print</button>
+        <a href="index.html">Home</a>
     </div>
-
-    <script>
-        function goHome() {
-            window.location.href = "index.html";
-        }
-    </script>
 
 </body>
 </html>
