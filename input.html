@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jabatan Pembangunan</title>
+    <link rel="stylesheet" href="input.css">
+</head>
+<body>
+
+<header class="header">
+    <img src="kedah.png" class="logo left">
+    <h1>JABATAN PEMBANGUNAN</h1>
+    <img src="logo mpkp-Photoroom.png" class="logo right">
+</header>
+
+<div class="container">
+
+    <input type="text" id="tajuk" placeholder="TAJUK PERMOHON">
+    <input type="text" id="pemaju" placeholder="PEMAJU">
+    <input type="text" id="nofail" placeholder="NO.FAIL">
+    <input type="text" id="taman" placeholder="NAMA TAMAN">
+
+    <input type="file" id="certificate" accept="image/*">
+
+    <div class="btn-group">
+        <button onclick="saveData()">save</button>
+
+<script type="module" src="firebase.js"></script>
+<script type="module" src="index.js"></script>
+        <button type="button" onclick="window.location.href='homepage.html'">HOME</button>
+        <button type="button" onclick="window.location.href='print.html'">PRINT</button>
+    </div>
+
+</div>
+
+<!-- 🔥 FIREBASE SDKs (v8 - SIMPLE & STABLE) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+<script>
+    // 🔥 REPLACE WITH YOUR REAL FIREBASE CONFIG
+   const firebaseConfig = {
+  apiKey: "AIzaSyBSpA1Qcass3V6_PbPaQxL0Um_NTekUO5Q",
+  authDomain: "borang-f-jabatan-pembangunan.firebaseapp.com",
+  projectId: "borang-f-jabatan-pembangunan",
+  storageBucket: "borang-f-jabatan-pembangunan.firebasestorage.app",
+  messagingSenderId: "549863540285",
+  appId: "1:549863540285:web:985fa51a35280edc3f0c54"
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+
+    // ✅ SAVE FUNCTION
+    function saveData() {
+        alert("Save button clicked"); // DEBUG CONFIRMATION
+
+        const tajuk = document.getElementById("tajuk").value.trim();
+        const pemaju = document.getElementById("pemaju").value.trim();
+        const nofail = document.getElementById("nofail").value.trim();
+        const taman = document.getElementById("taman").value.trim();
+        const fileInput = document.getElementById("certificate");
+        const file = fileInput.files[0];
+
+        if (!tajuk || !pemaju || !nofail || !taman || !file) {
+            alert("Sila isi semua maklumat dan pilih sijil");
+            return;
+        }
+
+        // 🔹 Upload image to Storage
+        const storageRef = storage.ref("certificates/" + Date.now() + "_" + file.name);
+
+        storageRef.put(file)
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(imageURL => {
+
+            // 🔹 Save data to Firestore
+            return db.collection("borangF").add({
+                tajuk: tajuk,
+                pemaju: pemaju,
+                nofail: nofail,
+                taman: taman,
+                certificateURL: imageURL,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+        })
+        .then(() => {
+            alert("Data berjaya disimpan!");
+
+            // Clear form
+            document.getElementById("tajuk").value = "";
+            document.getElementById("pemaju").value = "";
+            document.getElementById("nofail").value = "";
+            document.getElementById("taman").value = "";
+            fileInput.value = "";
+
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Gagal menyimpan data");
+        });
+    }
+</script>
+
+</body>
+</html>
