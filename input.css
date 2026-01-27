@@ -1,53 +1,70 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: url("g e o r g i a n a.jpg") no-repeat center center fixed;
+    background-image: url("g\ e\ o\ r\ g\ i\ a\ n\ a.jpg");
     background-size: cover;
+    background-position: center;
 }
 
 .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    background: #d3d3d3;
+    padding: 15px;
+    position: relative;
+}
+
+.header h1 {
+    margin: 0;
 }
 
 .logo {
-    width: 80px;
+    width: 70px;
     position: absolute;
 }
 
-.left { left: 30px; }
-.right { right: 30px; }
-
-.container {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+.logo.left {
+    left: 20px;
 }
 
-input {
-    width: 70%;
-    padding: 20px;
-    border-radius: 40px;
+.logo.right {
+    right: 20px;
+}
+
+.container {
+    width: 400px;
+    margin: 60px auto;
+    background: rgba(200,200,210,0.95);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.container input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 20px;
     border: none;
-    text-align: center;
-    font-size: 18px;
-    background: rgba(180,180,180,0.9);
 }
 
 .btn-group {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-button {
-    padding: 15px 30px;
-    border-radius: 30px;
+.btn-group button {
+    padding: 12px 25px;
+    border-radius: 25px;
     border: none;
-    font-size: 16px;
+    background: #a9a9b3;
     cursor: pointer;
-    background: #b0b0b0;
+    font-size: 16px;
+}
+
+.btn-group button:hover {
+    background: #90909a;
 }

@@ -21,31 +21,22 @@ function saveData() {
             image: reader.result
         };
 
-        // ✅ Get existing records or empty array
         const records = JSON.parse(localStorage.getItem("records")) || [];
 
-        // ✅ Prevent duplicate No. Fail
         const index = records.findIndex(r => r.nofail === nofail);
         if (index !== -1) {
-            records[index] = record; // overwrite
+            records[index] = record;
         } else {
             records.push(record);
         }
 
-        // ✅ Save permanently
         localStorage.setItem("records", JSON.stringify(records));
         localStorage.setItem("selectedRecord", JSON.stringify(record));
 
-        // ✅ Alert user
-        alert("Rekod berjaya disimpan!");
-
-        // ✅ Clear inputs for next entry
-        document.getElementById("tajuk").value = "";
-        document.getElementById("pemaju").value = "";
-        document.getElementById("nofail").value = "";
-        document.getElementById("taman").value = "";
-        document.getElementById("gambar").value = "";
+        // ✅ Navigate only AFTER file is loaded
+        window.location.href = "result.html";
     };
 
+    // 🔑 This triggers onload
     reader.readAsDataURL(file);
 }

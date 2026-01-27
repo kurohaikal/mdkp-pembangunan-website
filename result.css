@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("g\ e\ o\ r\ g\ i\ a\ n\ a.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.result-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+}
+
+.data-box {
+    width: 35%;
+    background: #a9a9b3;
+    padding: 30px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.data-box h2 {
+    text-align: center;
+}
+
+.image-box {
+    width: 45%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+}
+
+.action-buttons {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.action-buttons button {
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: none;
+    background: #b0b0ba;
+    font-size: 18px;
+    cursor: pointer;
+}

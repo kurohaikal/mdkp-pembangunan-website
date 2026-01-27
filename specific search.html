@@ -7,39 +7,39 @@
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <img src="kedah.png" alt="Logo Kiri" class="logo left">
-        <h1>JABATAN PEMBANGUNAN</h1>
-        <img src="logo mpkp-Photoroom.png" alt="Logo Kanan" class="logo right">
-    </header>
+<header class="header">
+    <img src="kedah.png" class="logo left">
+    <h1>JABATAN PEMBANGUNAN</h1>
+    <img src="logo mpkp-Photoroom.png" class="logo right">
+</header>
 
-    <!-- SEARCH FORM -->
-    <main class="container">
+<main class="container">
 
-        <div class="input-box">
-            <input type="text" placeholder="TAJUK PERMOHON">
-        </div>
+    <div class="input-box">
+        <input type="text" id="tajuk" placeholder="TAJUK PERMOHON">
+    </div>
 
-        <div class="input-box">
-            <input type="text" placeholder="PEMAJU">
-        </div>
+    <div class="input-box">
+        <input type="text" id="pemaju" placeholder="PEMAJU">
+    </div>
 
-        <div class="input-box">
-            <input type="text" placeholder="NO.FAIL">
-        </div>
+    <div class="input-box">
+        <input type="text" id="nofail" placeholder="NO.FAIL">
+    </div>
 
-        <div class="input-box">
-            <input type="text" placeholder="NAMA TAMAN">
-        </div>
+    <div class="input-box">
+        <input type="text" id="taman" placeholder="NAMA TAMAN">
+    </div>
 
-        <!-- BUTTONS -->
-        <div class="button-group">
-            <a href="index.html" class="btn">home</a>
-            <button class="btn">search</button>
-        </div>
+    <div class="button-group">
+        <a href="index.html" class="btn">home</a>
+        <button class="btn" id="searchBtn">search</button>
+    </div>
 
-    </main>
+    <p id="error" style="color:red; text-align:center;"></p>
 
+</main>
+
+<script src="specific search.js"></script>
 </body>
 </html>

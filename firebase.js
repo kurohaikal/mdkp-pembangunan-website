@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-  const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyBSpA1Qcass3V6_PbPaQxL0Um_NTekUO5Q",
   authDomain: "borang-f-jabatan-pembangunan.firebaseapp.com",
   projectId: "borang-f-jabatan-pembangunan",
