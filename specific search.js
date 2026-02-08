@@ -1,106 +1,69 @@
-// specific search.js
+// Variable to store the record you actually click in the sidebar
+let selectedRecord = null;
 
-// 1. Run this as soon as the page loads to build the History Sidebar
 window.onload = function() {
-    displayHistory();
+    displayHistory(); 
 };
 
-/**
- * Grabs all records from LocalStorage and builds the left-hand sidebar.
- */
-function displayHistory() {
+async function displayHistory() {
     const historyList = document.getElementById('historyList');
-    // Retrieve the array of all records saved from index.js
-    const records = JSON.parse(localStorage.getItem('allRecords')) || [];
+    const { data: records, error } = await _supabase
+        .from('my_items')
+        .select('*');
 
-    historyList.innerHTML = ""; // Clear existing list items
+    historyList.innerHTML = ""; 
 
-    if (records.length === 0) {
-        historyList.innerHTML = "<p style='color:white; font-size:14px; text-align:center; padding:10px;'>Tiada rekod disimpan.</p>";
+    if (error || !records || records.length === 0) {
+        historyList.innerHTML = "<p style='color:white; text-align:center;'>Tiada rekod.</p>";
         return;
     }
 
-    // Loop through the list to create clickable record boxes
-    records.forEach((rec, index) => {
+    // Sort manually to show newest at top
+    records.sort((a, b) => b.id - a.id);
+
+    records.forEach((rec) => {
         const item = document.createElement('div');
         item.className = "history-item";
+        item.innerText = `${rec.taman || 'No Name'} (${rec.nofail || 'No Fail'})`; 
         
-        // Display Title and No. Fail to distinguish between same-title records
-        item.innerText = `${rec.tajuk} (${rec.nofail})`; 
-        
-        // When clicked, fill the form and "prime" the search button with this specific ID
         item.onclick = function() {
+            // 1. Fill the form boxes
             fillForm(rec);
-            // We store the Unique ID on the button so the search logic knows which one to pick
-            document.getElementById('searchBtn').setAttribute('data-selected-id', rec.id);
+            // 2. IMPORTANT: Lock this specific record so the Search button knows exactly which one to open
+            selectedRecord = rec;
             
-            // Clear any old error messages
-            document.getElementById('error').innerText = "";
+            // Visual feedback: highlight selected item
+            document.querySelectorAll('.history-item').forEach(el => el.style.background = "transparent");
+            item.style.background = "rgba(255,255,255,0.2)";
         };
         
         historyList.appendChild(item);
     });
 }
 
-/**
- * Fills the input boxes with the data from the selected history item.
- */
 function fillForm(data) {
-    document.getElementById('tajuk').value = data.tajuk;
-    document.getElementById('pemaju').value = data.pemaju;
-    document.getElementById('nofail').value = data.nofail;
-    document.getElementById('taman').value = data.taman;
+    document.getElementById('tajuk').value = data.taman || ""; 
+    document.getElementById('pemaju').value = data.pemaju || "";
+    document.getElementById('nofail').value = data.nofail || "";
+    document.getElementById('taman').value = data.taman || "";
 }
 
-/**
- * Handles the Search button click.
- */
+// The Search button now opens the SPECIFIC record you clicked
 document.getElementById('searchBtn').addEventListener('click', function() {
     const errorMsg = document.getElementById('error');
-    const allRecords = JSON.parse(localStorage.getItem('allRecords')) || [];
     
-    // Check if we have a specific ID selected from the sidebar
-    const selectedId = this.getAttribute('data-selected-id');
-
-    if (selectedId) {
-        // FIND BY UNIQUE ID (Solves the duplicate title problem)
-        const foundData = allRecords.find(item => item.id == selectedId);
-
-        if (foundData) {
-            openRecord(foundData);
-            return;
-        }
-    }
-
-    // FALLBACK: If user typed manually instead of clicking history, search by Tajuk
-    const searchVal = document.getElementById('tajuk').value.trim().toLowerCase();
-    if (!searchVal) {
-        errorMsg.innerText = "Sila pilih rekod dari history atau masukkan tajuk.";
-        errorMsg.style.color = "orange";
-        return;
-    }
-
-    const foundByText = allRecords.find(item => item.tajuk.toLowerCase().includes(searchVal));
-
-    if (foundByText) {
-        openRecord(foundByText);
+    if (selectedRecord) {
+        // If you clicked an item in history, open that exact one
+        openRecord(selectedRecord);
     } else {
-        errorMsg.innerText = "Tiada rekod dijumpai.";
-        errorMsg.style.color = "red";
+        // If you just typed in the box without clicking history, show an error
+        errorMsg.innerText = "Sila klik rekod dari History terlebih dahulu.";
+        errorMsg.style.color = "yellow";
     }
 });
 
-/**
- * Saves the selected record to 'currentView' and redirects to result page.
- */
 function openRecord(data) {
-    const errorMsg = document.getElementById('error');
+    // This passes the UNIQUE ID and UNIQUE IMAGE_URL to the result page
     localStorage.setItem('currentView', JSON.stringify(data));
-    
-    errorMsg.innerText = "Rekod tepat ditemui! Membuka...";
-    errorMsg.style.color = "green";
-
-    setTimeout(() => {
-        window.location.href = 'result.html';
-    }, 800);
+    window.location.href = 'result.html';
 }

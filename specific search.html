@@ -6,7 +6,6 @@
     <title>Carian Rekod - Jabatan Pembangunan</title>
     <link rel="stylesheet" href="specific search.css">
     <style>
-        /* Small style addition to make the history search look clean */
         #historySearch {
             width: 90%;
             padding: 8px;
@@ -29,24 +28,19 @@
     <aside class="history-sidebar">
         <h2>HISTORY</h2>
         <input type="text" id="historySearch" onkeyup="filterHistory()" placeholder="Search taman in history...">
-        
-        <div id="historyList" class="scrollable-list">
-            </div>
+        <div id="historyList" class="scrollable-list"></div>
     </aside>
 
     <main class="container">
         <div class="input-box">
             <input type="text" id="tajuk" placeholder="TAJUK PERMOHONAN">
         </div>
-
         <div class="input-box">
             <input type="text" id="pemaju" placeholder="PEMAJU">
         </div>
-
         <div class="input-box">
             <input type="text" id="nofail" placeholder="NO.FAIL">
         </div>
-
         <div class="input-box">
             <input type="text" id="taman" placeholder="NAMA TAMAN">
         </div>
@@ -58,28 +52,20 @@
 
         <p id="error"></p>
     </main>
-
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 <script src="specific search.js"></script>
 
 <script>
 function filterHistory() {
-    // 1. Get the text from the search bar
     let input = document.getElementById('historySearch').value.toLowerCase();
-    
-    // 2. Get the history list and all items inside it
     let list = document.getElementById('historyList');
-    let items = list.getElementsByTagName('div'); // Assuming history items are inside <div> tags
-
-    // 3. Loop through items and hide those that don't match the search
+    let items = list.getElementsByTagName('div'); 
     for (let i = 0; i < items.length; i++) {
         let textContent = items[i].textContent || items[i].innerText;
-        if (textContent.toLowerCase().indexOf(input) > -1) {
-            items[i].style.display = "";
-        } else {
-            items[i].style.display = "none";
-        }
+        items[i].style.display = textContent.toLowerCase().indexOf(input) > -1 ? "" : "none";
     }
 }
 </script>
